@@ -23,6 +23,7 @@ But before we can get there, we're going to have to understand much more deeply 
 ## A Program in Chunks
 ## 一大块程序
 You may write your JS program in one *.js* file, but your program is almost certainly comprised of several chunks, only one of which is going to execute *now*, and the rest of which will execute *later*. The most common unit of *chunk* is the `function`.
+	你也许会以*.js*文件格式来写JS程序，但你程序基本上肯定是多个块组成的
 
 The problem most developers new to JS seem to have is that *later* doesn't happen strictly and immediately after *now*. In other words, tasks that cannot complete *now* are, by definition, going to complete asynchronously, and thus we will not have blocking behavior as you might intuitively expect or want.
 

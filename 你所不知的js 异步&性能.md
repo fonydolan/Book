@@ -7,7 +7,6 @@ This is not just about what happens from the beginning of a `for` loop to the en
 	这不是‘for’循环从开始到结束发生了什么这种分分钟就知道的问题。这是关于你的程序做什么， 一部分现在执行，另一部分要后续执行；这里的现在和后续之间有个程序不能主动执行的延迟。
 
 Practically all nontrivial programs ever written (especially in JS) have in some way or another had to manage this gap, whether that be in waiting for user input, requesting data from a database or file system, sending data across the network and waiting for a response, or performing a repeated task at a fixed interval of time (like animation). In all these various ways, your program has to manage state across the gap in time. As they famously say in London (of the chasm between the subway door and the platform): "mind the gap."
-
 	几乎所有现有程序（特别是JS）都是有一些或其他方式来管理这些间隔，类似是否要等待用户输入， 从数据库或文件系统获取数据，通过网络发送数据以及等待响应，或在一定周期内执行重复任务（例如动画）。
 
 In fact, the relationship between the *now* and *later* parts of your program is at the heart of asynchronous programming.

@@ -4,24 +4,25 @@
   对于像javascript这类的编程语言而言，如何将程序的动作行为在一段时间后进行展示执行是编程中十分重要且目前经常被误解的部分之一。
 
 This is not just about what happens from the beginning of a `for` loop to the end of a `for` loop, which of course takes *some time* (microseconds to milliseconds) to complete. It's about what happens when part of your program runs *now*, and another part of your program runs *later* -- there's a gap between *now* and *later* where your program isn't actively executing.
-    这不是‘for’循环从开始到结束发生了什么这种分分钟就知道的问题。这是关于你的程序做什么， 一部分马上执行，另一部分要稍后执行；这里的马上和稍后有个程序不能主动执行的延迟。
+	这不是‘for’循环从开始到结束发生了什么这种分分钟就知道的问题。这是关于你的程序做什么， 一部分现在执行，另一部分要后续执行；这里的现在和后续之间有个程序不能主动执行的延迟。
 
 Practically all nontrivial programs ever written (especially in JS) have in some way or another had to manage this gap, whether that be in waiting for user input, requesting data from a database or file system, sending data across the network and waiting for a response, or performing a repeated task at a fixed interval of time (like animation). In all these various ways, your program has to manage state across the gap in time. As they famously say in London (of the chasm between the subway door and the platform): "mind the gap."
 
-    事实上，现成的所有程序（特别是JS）都是有一些或其他方式来管理这个间隔。
+	几乎所有现有程序（特别是JS）都是有一些或其他方式来管理这些间隔，类似是否要等待用户输入， 从数据库或文件系统获取数据，通过网络发送数据以及等待响应，或在一定周期内执行重复任务（例如动画）。
 
 In fact, the relationship between the *now* and *later* parts of your program is at the heart of asynchronous programming.
-
+	事实上，在你程序中的现在和后续的关系就是异步编程中的核心。
 Asynchronous programming has been around since the beginning of JS, for sure. But most JS developers have never really carefully considered exactly how and why it crops up in their programs, or explored various *other* ways to handle it. The *good enough* approach has always been the humble callback function. Many to this day will insist that callbacks are more than sufficient.
-
+	从JS起步开始异步编程无疑就已经贯穿其中。但大多数JS开发者从来没有真正认真仔细地考虑过它是如何发生为何发生， 以及有没有*其他方式*实现它呢。普遍的方式就是使用回调函数。许多这样使用的人强调回调函数以及远远足够了。
 But as JS continues to grow in both scope and complexity, to meet the ever-widening demands of a first-class programming language that runs in browsers and servers and every conceivable device in between, the pains by which we manage asynchrony are becoming increasingly crippling, and they cry out for approaches that are both more capable and more reason-able.
-
+	但是由于JS在使用范围和复杂性的持续增长，为了满足作为浏览器和服务器以及每个已知设备上运行的一流编程语言而不断扩大的需求，操作异步性的痛点正变得越来越严峻，‘他们呼吁更多有才的和有理有据的方法’。
 While this all may seem rather abstract right now, I assure you we'll tackle it more completely and concretely as we go on through this book. We'll explore a variety of emerging techniques for async JavaScript programming over the next several chapters.
+	刚刚说了这么多很抽象的，接下来本书中我们需要些完整具体的东西。后面几章节我们将会了解各种javascript编程的前沿的技术。
 
 But before we can get there, we're going to have to understand much more deeply what asynchrony is and how it operates in JS.
-
+	但在此之前，我们需要更胜如的了解什么是异步以及在JS中它的运行。
 ## A Program in Chunks
-
+## 一大块程序
 You may write your JS program in one *.js* file, but your program is almost certainly comprised of several chunks, only one of which is going to execute *now*, and the rest of which will execute *later*. The most common unit of *chunk* is the `function`.
 
 The problem most developers new to JS seem to have is that *later* doesn't happen strictly and immediately after *now*. In other words, tasks that cannot complete *now* are, by definition, going to complete asynchronously, and thus we will not have blocking behavior as you might intuitively expect or want.

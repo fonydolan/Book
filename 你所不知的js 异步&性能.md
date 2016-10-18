@@ -59,7 +59,7 @@ ajax( "http://some.url.1", function myCallbackFunction(data){
 
 Before you protest in disagreement, no, your desire to avoid the mess of callbacks is *not* justification for blocking, synchronous Ajax.
 
-**警告** 你也许听说过产生一个同步Ajax请求是可行的。虽然技术上来说是的，但你绝对不要在任何情况下这么做，因为这会阻塞浏览页面（按钮、菜单、滚动等等）
+**警告** 你也许听说过产生一个同步Ajax请求是可行的。虽然技术上来说是的，但你绝对不要在任何情况下这么做，因为这会锁定浏览页面（按钮、菜单、滚动等等），还会阻塞任何途径产生的所有的用户交互。这是一个任何情况都必须被避免的严重问题。
 
 For example, consider this code:
 
@@ -79,6 +79,7 @@ setTimeout( later, 1000 ); // Meaning of life: 42
 ```
 
 There are two chunks to this program: the stuff that will run *now*, and the stuff that will run *later*. It should be fairly obvious what those two chunks are, but let's be super explicit:
+这里有两块程序:一部分执行*now*,一部分执行*later*.对于这两块代码具体做什么显而易见，不过还是让我们明确下：
 
 Now:
 ```js
@@ -101,7 +102,11 @@ console.log( "Meaning of life:", answer );
 
 The *now* chunk runs right away, as soon as you execute your program. But `setTimeout(..)` also sets up an event (a timeout) to happen *later*, so the contents of the `later()` function will be executed at a later time (1,000 milliseconds from now).
 
+*now*模块总是在你运行程序时候立即运行。而'setTimeout()'会设置一个事件（超时事件）来执行*later*，因此'later()'方法的内容会在一段时间（1000毫秒后）后执行。
+
 Any time you wrap a portion of code into a `function` and specify that it should be executed in response to some event (timer, mouse click, Ajax response, etc.), you are creating a *later* chunk of your code, and thus introducing asynchrony to your program.
+	
+
 
 ### Async Console
 

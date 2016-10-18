@@ -39,10 +39,12 @@ console.log( data );
 ```
 
 You're probably aware that standard Ajax requests don't complete synchronously, which means the `ajax(..)` function does not yet have any value to return back to be assigned to `data` variable. If `ajax(..)` *could* block until the response came back, then the `data = ..` assignment would work fine.
+	你或许已经知道标准的Ajax请求不会同步完成，这就意味着'ajax(..)'函数目前来看不会有任何返回值给'data'变量。如果'ajax()'*能够*阻塞请求直到响应返回，那么'data=..' 就能够很好得实现了。
 
 But that's not how we do Ajax. We make an asynchronous Ajax request *now*, and we won't get the results back until *later*.
-
+	但是这就和我们使用Ajax的初衷相悖了。我们现在发送一个异步的Ajax请求后是无法马上获得结果返回直到*稍后*响应返回。
 The simplest (but definitely not only, or necessarily even best!) way of "waiting" from *now* until *later* is to use a function, commonly called a callback function:
+	一种等待从*现在*到*稍后*最简便的(当然不是唯一的，甚至也不是最好的)方式是使用函数，通常被称为回调函数：
 
 ```js
 // ajax(..) is some arbitrary Ajax function given by a library
@@ -56,6 +58,8 @@ ajax( "http://some.url.1", function myCallbackFunction(data){
 **Warning:** You may have heard that it's possible to make synchronous Ajax requests. While that's technically true, you should never, ever do it, under any circumstances, because it locks the browser UI (buttons, menus, scrolling, etc.) and prevents any user interaction whatsoever. This is a terrible idea, and should always be avoided.
 
 Before you protest in disagreement, no, your desire to avoid the mess of callbacks is *not* justification for blocking, synchronous Ajax.
+
+**警告** 你也许听说过产生一个同步Ajax请求是可行的。虽然技术上来说是的，但你绝对不要在任何情况下这么做，因为这会阻塞浏览页面（按钮、菜单、滚动等等）
 
 For example, consider this code:
 

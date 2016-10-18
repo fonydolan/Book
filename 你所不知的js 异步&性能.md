@@ -112,13 +112,15 @@ Any time you wrap a portion of code into a `function` and specify that it should
 ### 异步控制台提示
 There is no specification or set of requirements around how the `console.*` methods work -- they are not officially part of JavaScript, but are instead added to JS by the *hosting environment* (see the *Types & Grammar* title of this book series).
 	这里就没有必要详述'console.*'方法是如何工作的。官方来说它们并不是JavaScript的一部分，而是通过*运行环境*带入JS的（参考*Types & Grammar*系列书籍）。
+	
 So, different browsers and JS environments do as they please, which can sometimes lead to confusing behavior.
 	因此，不同浏览器和JS环境按照各自的一套去处理，这有时就会导致混乱的行为。
+	
 In particular, there are some browsers and some conditions that `console.log(..)` does not actually immediately output what it's given. The main reason this may happen is because I/O is a very slow and blocking part of many programs (not just JS). So, it may perform better (from the page/UI perspective) for a browser to handle `console` I/O asynchronously in the background, without you perhaps even knowing that occurred.
 	特别是有些浏览器和别的情况'console.log(..)'没有切实地立即输出给顶定的内容。导致这个情况发生的主要源原因是I/O是很慢的还会锁定许多程序中的部分执行（不只是JS）。因此，以一种你甚至不会感觉到他它发生的方式通过浏览器后台异步处理'控制台'I/O会比在页面/UI直接处理更好。
 
 A not terribly common, but possible, scenario where this could be *observable* (not from code itself but from the outside):
-	
+	一个不是很常见但有可能的方案
 ```js
 var a = {
 	index: 1
